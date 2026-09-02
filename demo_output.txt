@@ -1,0 +1,77 @@
+Starting Calypso16/32 Emulator - Detailed Execution Trace
+============================================================
+Each instruction shows: PC, raw instruction, format, result, next PC, and all registers.
+
+------------------------------------------------------------
+CYCLE 1
+    PC        : 0x1000
+    RAW       : 0x4045 (2 bytes)
+    INSTRUCTION: C.ADDI x1, 5
+    FORMAT: CI (16-bit)
+    RESULT : x1 = 5 (0x0000000000000005)
+    PC      : 0x1000 -> 0x1002
+              (sequential advance by 2 bytes)
+    REGISTERS AFTER: x0 =0      x1 =5      x2 =0      x3 =0      x4 =0      x5 =0      x6 =0      x7 =0      x8 =0      x9 =0      x10=0      x11=0      x12=0      x13=0      x14=0      x15=0      
+                    x16=0      x17=0      x18=0      x19=0      x20=0      x21=0      x22=0      x23=0      x24=0      x25=0      x26=0      x27=0      x28=0      x29=0      x30=0      x31=0    
+    RUNNING : true
+
+------------------------------------------------------------
+CYCLE 2
+    PC        : 0x1002
+    RAW       : 0x0021 (2 bytes)
+    INSTRUCTION: C.ADD x1, x1
+    FORMAT: CS (16-bit)
+    RESULT : x1 = 10 (0x000000000000000A)
+    PC      : 0x1002 -> 0x1004
+              (sequential advance by 2 bytes)
+    REGISTERS AFTER: x0 =0      x1 =10     x2 =0      x3 =0      x4 =0      x5 =0      x6 =0      x7 =0      x8 =0      x9 =0      x10=0      x11=0      x12=0      x13=0      x14=0      x15=0      
+                    x16=0      x17=0      x18=0      x19=0      x20=0      x21=0      x22=0      x23=0      x24=0      x25=0      x26=0      x27=0      x28=0      x29=0      x30=0      x31=0    
+    RUNNING : true
+
+------------------------------------------------------------
+CYCLE 3
+    PC        : 0x1004
+    RAW       : 0xD4200000 (4 bytes)
+    INSTRUCTION: SW x1, 0(x0)
+    FORMAT: I  (32-bit)
+    RESULT : MEM[0x0000] <- x1 = 10 (0x000000000000000A)
+    MEMORY [0000..0007] = 00 00 00 00 00 00 00 0A
+    PC      : 0x1004 -> 0x1008
+              (sequential advance by 4 bytes)
+    REGISTERS AFTER: x0 =0      x1 =10     x2 =0      x3 =0      x4 =0      x5 =0      x6 =0      x7 =0      x8 =0      x9 =0      x10=0      x11=0      x12=0      x13=0      x14=0      x15=0      
+                    x16=0      x17=0      x18=0      x19=0      x20=0      x21=0      x22=0      x23=0      x24=0      x25=0      x26=0      x27=0      x28=0      x29=0      x30=0      x31=0    
+    RUNNING : true
+
+------------------------------------------------------------
+CYCLE 4
+    PC        : 0x1008
+    RAW       : 0xD0600000 (4 bytes)
+    INSTRUCTION: LW x3, 0(x0)
+    FORMAT: I  (32-bit)
+    RESULT : x3 <- MEM[0x0000] = 10 (0x000000000000000A)
+    MEMORY [0000..0007] = 00 00 00 00 00 00 00 0A
+    PC      : 0x1008 -> 0x100C
+              (sequential advance by 4 bytes)
+    REGISTERS AFTER: x0 =0      x1 =10     x2 =0      x3 =10     x4 =0      x5 =0      x6 =0      x7 =0      x8 =0      x9 =0      x10=0      x11=0      x12=0      x13=0      x14=0      x15=0      
+                    x16=0      x17=0      x18=0      x19=0      x20=0      x21=0      x22=0      x23=0      x24=0      x25=0      x26=0      x27=0      x28=0      x29=0      x30=0      x31=0    
+    RUNNING : true
+
+------------------------------------------------------------
+CYCLE 5
+    PC        : 0x100C
+    RAW       : 0xDC000000 (4 bytes)
+    INSTRUCTION: JAL x0, 0
+    FORMAT: I  (32-bit)
+    RESULT : HALT (JAL x0, 0)
+    PC      : 0x100C -> 0x100C
+    REGISTERS AFTER: x0 =0      x1 =10     x2 =0      x3 =10     x4 =0      x5 =0      x6 =0      x7 =0      x8 =0      x9 =0      x10=0      x11=0      x12=0      x13=0      x14=0      x15=0      
+                    x16=0      x17=0      x18=0      x19=0      x20=0      x21=0      x22=0      x23=0      x24=0      x25=0      x26=0      x27=0      x28=0      x29=0      x30=0      x31=0    
+    RUNNING : false
+
+============================================================
+Execution stopped after 5 cycles.
+FINAL RESULT:
+    x1=10  x2=0  x3=10
+    PC=0x100C  running=false
+    Data memory[0x0000..0x0007] should contain the stored 64-bit value 10 in Big-Endian form.
+    MEMORY [0000..0007] = 00 00 00 00 00 00 00 0A

@@ -1,0 +1,48 @@
+=== Calypso16/32 Self-Test Suite ===
+
+[PASS] CS decode
+[PASS] CI decode + 6-bit sign extension
+[PASS] R decode
+[PASS] I decode + 16-bit sign extension
+[PASS] CS disassembly
+[PASS] CI disassembly
+[PASS] R disassembly
+[PASS] I disassembly
+[PASS] x0 ignores writes
+[PASS] x0 reads as zero
+[PASS] ADD
+[PASS] SUB
+[PASS] AND
+[PASS] OR
+[PASS] SLT signed
+[PASS] ADDI with negative immediate
+[PASS] ANDI
+[PASS] ORI
+[PASS] SLTI signed
+[PASS] CS ADD/SUB/AND/OR/SLT/MUL/DIV/REM execution
+[PASS] C.ADDI immediate execution
+[PASS] C.ANDI execution
+[PASS] C.ORI execution
+[PASS] C.SLTI execution
+[PASS] C.ADDI minimum signed immediate
+[PASS] MUL signed low 64 bits
+[PASS] DIV signed
+[PASS] REM signed
+[PASS] DIV by zero -> all ones
+[PASS] REM by zero -> rs1
+[PASS] Misaligned SW/LW round trip
+[PASS] Big-endian data storage
+Illegal memory access (SW) at addr=0x0000000000000FFF, PC=0x1000
+[PASS] Store crossing into program region is rejected
+[PASS] Out-of-bounds memory read rejected
+[PASS] Out-of-bounds memory write rejected
+[PASS] BEQ taken target
+[PASS] BEQ not-taken fall-through
+[PASS] JAL return address + target
+[PASS] Reserved CS funct detected
+[PASS] Illegal instruction halts emulator
+[PASS] Mixed-length fetch integration reaches HALT
+[PASS] Mixed-length program final state
+[PASS] Final result stored Big-Endian at data memory
+
+Self-test result: 43 passed, 0 failed.
